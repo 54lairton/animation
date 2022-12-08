@@ -82,9 +82,26 @@
             margin: 0 5px;
             font-size: 1.4rem;
         }
+        #turno-horario{
+            background-color: black;
+            border-radius: 12px 12px 0 0;
+            display: inline;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px 25px;
+            position: absolute;
+            font-weight: 800;
+            left: -300px;
+            bottom: 0;
+            font-size: 25pt;
+            transition: .5s ease;
+        }
     </style>
 </head>
 <body>
+    <div id="turno-horario">
+        
+    </div>
     <div class="relogio">
         <p id="time-hor">00:00-AM</p>
         <h1>Turno </h1>
@@ -99,16 +116,22 @@
         const sol = document.getElementById("sol");
         const time = document.getElementById("time-hor");
         const turno = document.getElementById("turno");
+        const divTurno = document.getElementById("turno-horario");
+        divTurno.innerHTML = "Modo";
 
         lua.onclick = ()=>{
+            divTurno.innerHTML = "⛅ Dia";
+            divTurno.style.left = '0';
             document.body.style = "background-image: url(https://thumbs.dreamstime.com/b/vector-ilustra%C3%A7%C3%A3o-do-c%C3%A9u-nebuloso-brilhante-bonito-no-estilo-anime-116692956.jpg)";
             lua.style.top = "-500px";
             sol.style.top = "0";
         }
         sol.onclick = ()=>{
+            divTurno.innerHTML = "🌕 Noite";
+            divTurno.style.left = '0';
             document.body.style = "background-image: url(https://th.bing.com/th/id/R.92fd4a53fe51aad1f557ce8afc76f006?rik=xWhE07VHoJkYIw&pid=ImgRaw&r=0)";
-            sol.style.top = "-500px";
             lua.style.top = "0";
+            sol.style.top = "-500px";
         }
 
         var Date = new Date();
@@ -116,6 +139,7 @@
         var min = Date.getMinutes();
 
         const hoursTime = ()=>{
+            divTurno.style.left = '-300px';
             let result;
             if(horas < 10){
                 result =  `0${horas}:${min}`;
@@ -151,7 +175,7 @@
             lua.style.top = "0";
         }
         
-        setInterval(hoursTime, 1000);
+        setInterval(hoursTime, 2000);
 
     </script>
 </body>
