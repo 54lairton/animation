@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <title>Animation - 01</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        html, body{
+            width: 100vw;
+            height: 100vh;
+            background-image: url(https://thumbs.dreamstime.com/b/vector-ilustra%C3%A7%C3%A3o-do-c%C3%A9u-nebuloso-brilhante-bonito-no-estilo-anime-116692956.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+            transition: background-image 1s ease;
+            background-position: center bottom;
+        }
+        img.sol{
+            width: 180px;
+            position: absolute;
+            right: 20px;
+            animation:anim 2s ease alternate infinite;
+            transition: width 1s ease, top .5s;
+        }
+        img.sol:hover{
+            width: 200px;
+            cursor: pointer;
+        }
+        img.lua{
+            width: 180px;
+            animation:anim 2s ease alternate infinite;
+            position: absolute;
+            right: 20px;
+            transition: width 1s ease, top .5s ease;
+            top: -500px;
+        }
+        img.lua:hover{
+            width: 200px;
+            cursor: pointer;
+        }
+
+        @keyframes anim{
+            to{
+                transform: translate(5px,30px);
+            }
+        }
+
+        .relogio{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            transform: translate(-50%,-50%);
+            background-color: rgba(0, 0, 0, 0.43);
+            padding: 2rem;
+            font-family: Arial;
+            border-radius: 2rem;
+            backdrop-filter: blur(70px);
+            border: 1px solid rgba(255, 255, 255, 0.247);
+        }
+        .relogio p#time-hor{
+            display: block;
+            text-align: center;
+            width: 100%;
+            color: white;
+            font-size: 4rem;
+            font-family: monospace;
+            margin-bottom: 5px;
+        }
+        .relogio h1{
+            color: white;
+            margin: 2px 0;
+        }
+        .relogio p#turno{
+            color: rgb(230, 227, 227);
+            margin: 0 5px;
+            font-size: 1.4rem;
+        }
+        #turno-horario{
+            background-color: black;
+            border-radius: 12px 12px 0 0;
+            display: inline;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px 25px;
+            position: absolute;
+            font-weight: 800;
+            left: -300px;
+            bottom: 0;
+            font-size: 25pt;
+            transition: .5s ease;
+            z-index: 10;
+        }
+        footer{
+            position: absolute;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.067);
+            width: 100%;
+            padding-block: 2rem;
+            text-align: center;
+        }
+        footer a{
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.2rem;
+        }
+        footer a:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="turno-horario">
+        
+    </div>
+    <div class="relogio">
+        <p id="time-hor">00:00</p>
+        <h1>Turno </h1>
+        <p id="turno">☀ Tarde</p>
+    </div>
+
+    <img src="https://th.bing.com/th/id/R.28710c13aee76595b25193728111d2bc?rik=O5ThVyRNgh0Kkg&riu=http%3a%2f%2fvignette3.wikia.nocookie.net%2fbattlefordreamisland%2fimages%2f4%2f43%2fCHEESY_ORB.png%2frevision%2flatest%3fcb%3d20140125024249&ehk=Qb7%2fZ9TfB0zfAGbs1fuKRudw0uZjZCPgNUGA4HtMjOk%3d&risl=&pid=ImgRaw&r=0" alt="lua" class="lua" id="lua">
+    <img src="https://th.bing.com/th/id/R.a04e9794092d2a6a8d8ad6ca56b0dd28?rik=%2bVQ%2fNDKzxhblGw&pid=ImgRaw&r=0" alt="sol" class="sol" id="sol">
+    <footer>
+        <a href="../index.html" id="footer">Home Animation list</a>
+    </footer>
+    <script>
+        const lua = document.getElementById("lua");
+        const sol = document.getElementById("sol");
+        const time = document.getElementById("time-hor");
+        const turno = document.getElementById("turno");
+        const divTurno = document.getElementById("turno-horario");
+        const a = document.getElementById("footer");
+        divTurno.innerHTML = "Modo";
+
+        lua.onclick = ()=>{
+            divTurno.innerHTML = "⛅ Dia";
+            divTurno.style.left = '0';
+            document.body.style = "background-image: url(https://thumbs.dreamstime.com/b/vector-ilustra%C3%A7%C3%A3o-do-c%C3%A9u-nebuloso-brilhante-bonito-no-estilo-anime-116692956.jpg)";
+            lua.style.top = "-500px";
+            sol.style.top = "0";
+            a.style.color = "black";
+        }
+        sol.onclick = ()=>{
+            divTurno.innerHTML = "🌕 Noite";
+            divTurno.style.left = '0';
+            document.body.style = "background-image: url(https://th.bing.com/th/id/R.92fd4a53fe51aad1f557ce8afc76f006?rik=xWhE07VHoJkYIw&pid=ImgRaw&r=0)";
+            lua.style.top = "0";
+            sol.style.top = "-500px";
+            a.style.color = "white";
+        }
+
+        var Date = new Date();
+        var hor = Date.getHours();
+        var min = Date.getMinutes();
+
+        const hoursTime = ()=>{
+            divTurno.style.left = '-300px';
+            logicH = hor < 10 ? "0"+hor : hor;
+            logicM = min < 10 ? "0"+min : min;
+            time.innerHTML =`${logicH} : ${logicM}`;
+            if(hor >= 5 && hor < 12){
+                turno.innerHTML = "⛅ Manhã";
+                time.innerHTML = `${logicH}:${logicM}`;
+            }else if(hor >= 12){
+                time.innerHTML = `${logicH}:${logicM}`;
+            }else if(hor >= 18){
+                turno.innerHTML = "🌕 Noite";
+                time.innerHTML = `${logicH}:${logicM}`;
+            }
+        }
+        if(hor >= 12){
+            turno.innerHTML = "🌞 Tarde";
+        }
+        if(hor >=5 && hor < 12){
+            turno.innerHTML = "⛅ Manhã";
+        }
+        if(hor >= 18){
+            turno.innerHTML = "🌕 Noite";
+            document.body.style = "background-image: url(https://th.bing.com/th/id/R.92fd4a53fe51aad1f557ce8afc76f006?rik=xWhE07VHoJkYIw&pid=ImgRaw&r=0)";
+            sol.style.top = "-500px";
+            lua.style.top = "0";
+        }
+        
+        setInterval(hoursTime, 1000);
+
+    </script>
+</body>
+</html>
