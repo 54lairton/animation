@@ -115,9 +115,41 @@
         footer a:hover{
             text-decoration: underline;
         }
+                .bola-contain{
+            position: relative;
+            width: 100%;
+            height:100%;
+        }
+        .bolas{
+            width: 8px;
+            height: 8px;
+            background-color: yellow;
+            border-radius: 50%;
+            margin: 2px;
+            position: absolute;
+        }
+        .bolas:nth-child(1){
+            transition: all .1s;
+        }
+        .bolas:nth-child(2){
+            transition: all .2s;
+        }
+        .bolas:nth-child(3){
+            transition: all .3s;
+        }
+        .bolas:nth-child(){
+            transition: all .6s;
+        }
+        
     </style>
 </head>
 <body>
+    <div class="bola-contain" id="bola">
+        <div class="bolas" id="bol1"></div>
+        <div class="bolas" id="bol2"></div>
+        <div class="bolas" id="bol3"></div>
+        <div class="bolas" id="bol4"></div>
+   </div>
     <div id="turno-horario">
         
     </div>
@@ -191,7 +223,23 @@
         }
         
         setInterval(hoursTime, 1000);
+        const bol1 = document.getElementById("bol1");
+        const bol2 = document.getElementById("bol2");
+        const bol3 = document.getElementById("bol3");
+        const bol4 = document.getElementById("bol4");
+        var x_bol, y_bol;
+        window.addEventListener("mousemove", e =>{
+            x_bol = e.clientX;
+            y_bol = e.clientY;
+            bol1.style.transform ="translate("+x_bol+"px, "+y_bol+"px)";
 
+            bol2.style.transform ="translate("+x_bol+"px, "+y_bol+"px)";
+
+            bol3.style.transform ="translate("+x_bol+"px, "+y_bol+"px)";
+
+            bol4.style.transform ="translate("+x_bol+"px, "+y_bol+"px)";
+
+        })
     </script>
 </body>
 </html>
